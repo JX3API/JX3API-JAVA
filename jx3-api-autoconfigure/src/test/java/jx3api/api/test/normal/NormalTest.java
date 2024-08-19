@@ -30,16 +30,26 @@ public class NormalTest {
         WsActionDataManager.getWsDataByAction(1001);
     }
 
-    private String ticket = "";
+    private String ticket ="";
     private ApiService apiService;
 
     @BeforeEach
     void initApiProperties() {
-        ApiProperties apiProperties = new ApiProperties();
-        apiProperties.setApiToken("123456");
-        apiProperties.setApiUrl("https://www.jx3api.com");
-        apiService = new ApiService(apiProperties);
+        ticket = getTicket();
+        apiService = new ApiService(getApiProperties());
     }
+
+    private String getTicket() {
+        return System.getenv("ticket");
+    }
+
+    private ApiProperties getApiProperties() {
+        ApiProperties apiProperties = new ApiProperties();
+        apiProperties.setApiToken(System.getenv("token"));
+        apiProperties.setApiUrl("https://www.jx3api.com");
+        return apiProperties;
+    }
+
 
     /*
      *
