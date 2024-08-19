@@ -1,0 +1,8 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+jx3api.api.config.JX3ApiHttpAutoConfiguration,\
+jx3api.api.config.JX3ApiWsAutoConfiguration,\
+jx3api.api.ws.WebSocketClientInitializer,\
+jx3api.api.http.ApiService,\
+jx3api.api.config.WebSocketProperties,\
+jx3api.api.config.ApiProperties
