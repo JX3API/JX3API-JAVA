@@ -38,7 +38,7 @@ public enum MethodEnum {
      */
     DATA_SAVE_DETAILED("角色更新", "/data/save/detailed", SaveDetailedData.class, null, Object.class),
     DATA_ROLE_DETAILED("角色信息", "/data/role/detailed", RoleDetailedData.class, null, Object.class),
-    DATA_SCHOOL_MATRIX("阵法效果", "/data/school/matrix", SchoolMatrixData.class, null, Object.class),
+    DATA_SCHOOL_MATRIX("阵眼效果", "/data/school/matrix", SchoolMatrixData.class, null, Object.class),
     DATA_SCHOOL_FORCE("奇穴效果", "/data/school/force", SchoolForceData.class, null, List.class),
     DATA_SCHOOL_SKILL("技能效果", "/data/school/skills", SchoolSkillsData.class, null, List.class),
     DATA_TIEBA_RANDOM("八卦帖子", "/data/tieba/random", TiebaRandomData.class, null, List.class),
@@ -57,26 +57,33 @@ public enum MethodEnum {
     DATA_MEMBER_STUDENT("徒弟列表", "/data/member/student", MemberStudentData.class, null, Object.class),
     DATA_SERVER_SAND("沙盘信息", "/data/server/sand", ServerSandData.class, null, Object.class),
     DATA_SERVER_EVENT("阵营事件", "/data/server/event", ServerEventData.class, null, List.class),
-    DATA_TRADE_DEMON("金币比例", "/data/trade/demon", TradeDemonData.class, null, List.class),
-    DATA_TRADE_RECORD("物品价格", "/data/trade/record", TradeRecordData.class, null, Object.class),
-    DATA_TIEBA_ITEM_RECORDS("贴吧记录", "/data/tieba/item/record", TiebaItemRecordsData.class, null, List.class),
+    DATA_TRADE_DEMON("金币价格", "/data/trade/demon", TradeDemonData.class, null, List.class),
+    DATA_TRADE_RECORD("物品价格", "/data/trade/records", TradeRecordData.class, null, Object.class),
+    DATA_TIEBA_ITEM_RECORDS("贴吧记录", "/data/tieba/item/records", TiebaItemRecordsData.class, null, List.class),
     DATA_VALUABLES_STATISTICAL("掉落统计", "/data/valuables/statistical", ValuablesStatisticalData.class, null, List.class),
     DATA_VALUABLES_SERVER_STATISTICAL("全服掉落", "/data/valuables/server/statistical", ValuablesServerStatisticalData.class, null, List.class),
     DATA_SERVER_ANTIVICE("诛恶事件", "/data/server/antivice", ServerAntiviceData.class, null, List.class),
     DATA_RANK_STATISTICAL("风云榜单", "/data/rank/statistical", Map.class, null, List.class),
     DATA_RANK_SERVER_STATISTICAL("全服榜单", "/data/rank/server/statistical", Map.class, null, List.class),
-    DATA_SCHOOL_SENIORITY("资历榜单", "/data/school/rank/statistical", SchoolSeniorityData.class, null, List.class),
+    // v1.2新增
+    DATA_TABLE_RECORDS("挂件效果", "/data/table/records", TableRecordsData.class, null, List.class),
+    DATA_LUCK_UNFINISHED("未出奇遇", "/data/luck/unfinished", LuckUnfinishedData.class, null, List.class),
 
     /**
      * VIP2 API
      */
     DATA_ACTIVE_MONSTER("百战首领", "/data/active/monster", ActiveMonsterData.class, null, Object.class),
-    DATA_HORSE_RECORDS("的卢统计", "/data/horse/record", HorseRecordsData.class, null, List.class),
+    DATA_HORSE_RECORDS("的卢统计", "/data/horse/records", HorseRecordsData.class, null, List.class),
     DATA_HORSE_EVENT("马场事件", "/data/horse/ranch", HorseRanchData.class, null, Object.class),
-    DATA_WATCH_RECORD("烟花记录", "/data/firework/record", FireworkRecordData.class, null, List.class),
+    DATA_WATCH_RECORD("烟花记录", "/data/firework/records", FireworkRecordData.class, null, List.class),
     DATA_WATCH_STATISTICAL("烟花统计", "/data/firework/statistical", FireworkStatisticalData.class, null, List.class),
     DATA_WATCH_COLLECT("烟花汇总", "/data/firework/collect", FireworkCollectData.class, null, List.class),
     DATA_WATCH_RANK_STATISTICAL("烟花排行", "/data/firework/rank/statistical", FireworkRankStatisticalData.class, null, List.class),
+    // v1.2 新增
+    DATA_ROLE_MONSTER("百战精耐", "/data/role/monster", RoleMonsterData.class, null, Object.class),
+    DATA_AUCTION_RECORDS("拍卖记录", "/data/auction/records", AcutionRecordsData.class, null, List.class),
+    DATA_ROLE_SHOW_CARD("角色名片", "/data/role/show/card", RoleShowCardData.class, null, Object.class),
+    DATA_ROLE_SHOW_RANDOM("随机名片", "/data/role/show/random", RoleShowRandomData.class, null, Object.class),
 
     /**
      * VRF API

@@ -73,7 +73,8 @@ public class ApiService {
 
     /**
      * 行侠事件
-     * @param name  指定名称，查询指定事件的记录。
+     *
+     * @param name 指定名称，查询指定事件的记录。
      * @return ActiveCelebritiesData List
      */
     public BaseResult<List<ActiveCelebritiesData>> activeCelebrities(String name) {
@@ -90,7 +91,7 @@ public class ApiService {
      * 搜索科举试题的答案
      *
      * @param subject 科举题目，搜索目标题目答案
-     * @param limit 单页数量，设置单页返回的数量；默认值 : 10。
+     * @param limit   单页数量，设置单页返回的数量；默认值 : 10。
      * @return ExamAnswerData
      */
     public BaseResult<List<ExamAnswerData>> examAnswer(String subject, int limit) {
@@ -529,25 +530,6 @@ public class ApiService {
         return getResultRealData(requestResult, methodEnum);
     }
 
-    /**
-     * 资历榜单
-     *
-     * @param school 门派简称，查找目标心法的榜单，默认值 : ALL，
-     * @param server 区服名称，筛选记录，默认值 : ALL，
-     * @param ticket 推栏标识，检查请求权限，
-     * @return SchoolSeniorityData list
-     */
-    public BaseResult<List<SchoolSeniorityData>> schoolSeniority(String school, String server, String ticket) {
-        MethodEnum methodEnum = MethodEnum.DATA_SCHOOL_SENIORITY;
-        Map<String, Object> params = new HashMap<>();
-        params.put("server", server);
-        params.put("school", school);
-        params.put("ticket", ticket);
-        RequestResult requestResult = doPostRequest(methodEnum.getMethodPath(), params);
-        return getResultRealData(requestResult, methodEnum);
-
-    }
-
 
     /**
      * 奇穴效果
@@ -858,6 +840,77 @@ public class ApiService {
     }
 
     /**
+     * 百战精耐
+     *
+     * @param server 区服名称
+     * @param name   指定角色名称，查找目标角色的相关信息
+     * @return RankStatisticalData List
+     */
+    public BaseResult<List<RoleMonsterData>> roleMonster(String server, String name) {
+        MethodEnum methodEnum = MethodEnum.DATA_ROLE_MONSTER;
+        Map<String, Object> params = new HashMap<>();
+        params.put("server", server);
+        params.put("name", name);
+        RequestResult requestResult = doPostRequest(methodEnum.getMethodPath(), params);
+        return getResultRealData(requestResult, methodEnum);
+
+    }
+
+    /**
+     * 拍卖记录
+     * 阵营拍卖记录。
+     *
+     * @param server 区服名称
+     * @return RankStatisticalData List
+     */
+    public BaseResult<List<AcutionRecordsData>> auctionRecords(String server) {
+        MethodEnum methodEnum = MethodEnum.DATA_AUCTION_RECORDS;
+        Map<String, Object> params = new HashMap<>();
+        params.put("server", server);
+        RequestResult requestResult = doPostRequest(methodEnum.getMethodPath(), params);
+        return getResultRealData(requestResult, methodEnum);
+
+    }
+
+    /**
+     * 角色名片
+     * 客户端的名片墙。
+     *
+     * @param server 区服名称
+     * @param name   指定角色名称，查找目标角色的相关信息
+     * @return RankStatisticalData List
+     */
+    public BaseResult<RoleShowCardData> roleShowCard(String server, String name) {
+        MethodEnum methodEnum = MethodEnum.DATA_ROLE_SHOW_CARD;
+        Map<String, Object> params = new HashMap<>();
+        params.put("server", server);
+        params.put("name", name);
+        RequestResult requestResult = doPostRequest(methodEnum.getMethodPath(), params);
+        return getResultRealData(requestResult, methodEnum);
+
+    }
+
+    /**
+     * 角色名片
+     * 客户端的名片墙。
+     *
+     * @param server 区服名称
+     * @param body   指定角色体型，查找目标体型的相关信息；
+     * @param force  指定门派名称，查找目标门派的相关信息
+     * @return RankStatisticalData List
+     */
+    public BaseResult<RoleShowRandomData> roleShowRandom(String server, String body, String force) {
+        MethodEnum methodEnum = MethodEnum.DATA_ROLE_SHOW_RANDOM;
+        Map<String, Object> params = new HashMap<>();
+        params.put("server", server);
+        params.put("body", body);
+        params.put("force", force);
+        RequestResult requestResult = doPostRequest(methodEnum.getMethodPath(), params);
+        return getResultRealData(requestResult, methodEnum);
+
+    }
+
+    /**
      * 的卢统计
      *
      * @param server 区服名称，查找目标区服的记录
@@ -890,11 +943,11 @@ public class ApiService {
     /**
      * 智障聊天
      *
-     * @param name    机器人的名称
-     * @param text    聊天的完整内容
+     * @param name 机器人的名称
+     * @param text 聊天的完整内容
      * @return ChatMixedData
      */
-    public BaseResult<ChatMixedData> chatMixed( String name, String text) {
+    public BaseResult<ChatMixedData> chatMixed(String name, String text) {
         MethodEnum methodEnum = MethodEnum.DATA_CHAT_MIXED;
         Map<String, Object> params = new HashMap<>();
         params.put("name", name);
@@ -1030,7 +1083,42 @@ public class ApiService {
     }
 
     /**
-     * 执行get请求
+     * 挂件效果
+     * 查询挂件的效果以及获取方式。
+     *
+     * @param name 指定挂件名称，查找目标挂件的相关信息；
+     * @return TableRecordsData List
+     */
+    public BaseResult<List<TableRecordsData>> tableRecords(String name) {
+        MethodEnum methodEnum = MethodEnum.DATA_TABLE_RECORDS;
+        Map<String, Object> params = new HashMap<>();
+        params.put("name", name);
+        RequestResult requestResult = doPostRequest(methodEnum.getMethodPath(), params);
+        return getResultRealData(requestResult, methodEnum);
+
+    }
+
+    /**
+     * 未出奇遇
+     *
+     * @param name   指定角色名称，查找目标角色的相关信息；
+     * @param server 指定目标区服，查找目标区服的相关信息；
+     * @param ticket 推栏标识，检查并奇遇的完整性
+     * @return LuckUnfinishedData List
+     */
+    public BaseResult<List<LuckUnfinishedData>> luckUnfinished(String server, String name, String ticket) {
+        MethodEnum methodEnum = MethodEnum.DATA_LUCK_UNFINISHED;
+        Map<String, Object> params = new HashMap<>();
+        params.put("name", name);
+        params.put("server", server);
+        params.put("ticket", ticket);
+        RequestResult requestResult = doPostRequest(methodEnum.getMethodPath(), params);
+        return getResultRealData(requestResult, methodEnum);
+
+    }
+
+    /**
+     * 执行post请求
      *
      * @param path   请求地址
      * @param params 使用的参数
@@ -1038,7 +1126,7 @@ public class ApiService {
      */
     public RequestResult doPostRequest(String path, Map<String, Object> params) {
         params.put("token", apiProperties.getApiToken());
-        logger.info("请求接口=>{},参数=>{}", path,params);
+        logger.info("请求接口=>{},参数=>{}", path, params);
         Mono<RequestResult> mono = this.webClient.method(HttpMethod.POST)
                 .uri(uriBuilder -> uriBuilder.path(path).build())
                 .accept(MediaType.APPLICATION_JSON)

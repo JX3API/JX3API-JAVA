@@ -11,7 +11,7 @@ public class BaseResult<T> {
     /**
      * 服务返回的错误码
      */
-    public Integer code;
+    private Integer code;
     /**
      * 提示信息
      */

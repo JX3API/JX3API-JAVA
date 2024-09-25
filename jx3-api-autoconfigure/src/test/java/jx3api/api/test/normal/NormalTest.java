@@ -30,7 +30,7 @@ public class NormalTest {
         WsActionDataManager.getWsDataByAction(1001);
     }
 
-    private String ticket ="";
+    private String ticket = "";
     private ApiService apiService;
 
     @BeforeEach
@@ -129,7 +129,8 @@ public class NormalTest {
 
 
     private void assertDataResult(BaseResult o) {
-        Assert.notNull(o, "测试失败");
+        Assert.notNull(o, "测试失败，返回值为空");
+        Assert.isTrue(o.getCode() == 200, String.format("服务器返回值不为成功 200, 提示消息=>%s", o.getMsg()));
     }
 
 
@@ -305,8 +306,14 @@ public class NormalTest {
     }
 
     @Test
-    void schoolSeniority() {
-        BaseResult<List<SchoolSeniorityData>> baseResult = apiService.schoolSeniority("万花", "梦江南", ticket);
+    void tableRecords() {
+        BaseResult<List<TableRecordsData>> baseResult = apiService.tableRecords("夜幕星河");
+        assertDataResult(baseResult);
+    }
+
+    @Test
+    void luckUnfinished() {
+        BaseResult<List<LuckUnfinishedData>> baseResult = apiService.luckUnfinished("乾坤一掷", "琉枫", ticket);
         assertDataResult(baseResult);
     }
     /*
@@ -353,6 +360,30 @@ public class NormalTest {
     @Test
     void watchRankStatistical() {
         BaseResult<List<FireworkRankStatisticalData>> baseResult = apiService.watchRankStatistical("唯我独尊", "sender", 1640285289, 1640687624);
+        assertDataResult(baseResult);
+    }
+
+    @Test
+    void roleMonster() {
+        BaseResult<List<RoleMonsterData>> baseResult = apiService.roleMonster("唯我独尊", "夜温言@长安城");
+        assertDataResult(baseResult);
+    }
+
+    @Test
+    void auctionRecords() {
+        BaseResult<List<AcutionRecordsData>> baseResult = apiService.auctionRecords("唯我独尊");
+        assertDataResult(baseResult);
+    }
+
+    @Test
+    void roleShowCard() {
+        BaseResult<RoleShowCardData> baseResult = apiService.roleShowCard("唯我独尊", "夜温言@长安城");
+        assertDataResult(baseResult);
+    }
+
+    @Test
+    void roleShowRandom() {
+        BaseResult<RoleShowRandomData> baseResult = apiService.roleShowRandom("唯我独尊", "萝莉", "万花");
         assertDataResult(baseResult);
     }
 
@@ -409,7 +440,7 @@ public class NormalTest {
 
     @Test
     void musicKugou() {
-        BaseResult<List<MusicKugouData>> baseResult=  apiService.musicKugou("业火苍云歌");
+        BaseResult<List<MusicKugouData>> baseResult = apiService.musicKugou("业火苍云歌");
         assertDataResult(baseResult);
     }
 }
