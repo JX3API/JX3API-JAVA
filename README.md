@@ -55,3 +55,5 @@ mvn clean install -DskipTests
 - V1.2
     - 增加`挂件效果`、qq秀相关接口
     - 删除 `资历榜单, /data/school/rank/statistical`接口
+- V1.2.1
+  - bugfix 修复了错误使用内部类，导致类无法外部使用的问题。
