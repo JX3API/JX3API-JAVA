@@ -57,3 +57,5 @@ mvn clean install -DskipTests
     - 删除 `资历榜单, /data/school/rank/statistical`接口
 - V1.2.1
   - bugfix 修复了错误使用内部类，导致类无法外部使用的问题。
+- V1.2.2
+  - bugfix 增加objectmapper配置类，修复引字段缺失导致的整体序列化失败的问题，后果遇到字段缺失，可以提issues来添加

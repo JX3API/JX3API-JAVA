@@ -1,16 +1,17 @@
 package org.jx3api.startertest;
 
 import jakarta.annotation.Resource;
-import jx3api.api.config.EnableJX3Api;
 import jx3api.api.http.ApiService;
+import jx3api.api.http.BaseResult;
+import jx3api.api.http.data.role.attribute.RoleAttributeData;
 import jx3api.api.ws.CustomWebSocketHandler;
 import jx3api.api.ws.IWsDataPushService;
 import jx3api.api.ws.WebSocketClientInitializer;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -19,7 +20,7 @@ import org.springframework.web.socket.WebSocketSession;
  * 需要修改 {@link StarterTestApplication}类中的@Enablexx注解，否则spring注入会存在问题
  */
 @SpringBootTest
-@TestPropertySource(locations = "classpath:test.properties")
+@TestPropertySource(locations = "classpath:test-local.properties")
 class StarterTestApplicationTests {
     @Autowired
     private WebSocketClientInitializer webSocketClientInitializer;
@@ -27,6 +28,8 @@ class StarterTestApplicationTests {
     private IWsDataPushService iWsDataPushService;
     @Autowired
     private ApiService apiService;
+    @Value("${jx3api.api.ticket}")
+    private String ticket;
 
     @Test
     void wsTest() throws Exception {
@@ -59,7 +62,7 @@ class StarterTestApplicationTests {
                 "    \"date\": \"2023-05-30\"\n" +
                 "  }\n" +
                 "}");
-        customWebSocketHandler.handleMessage(mockSession,message);
+        customWebSocketHandler.handleMessage(mockSession, message);
     }
 
     private WebSocketSession createMockWebSocketSession() {
@@ -69,8 +72,7 @@ class StarterTestApplicationTests {
 
     @Test
     void apiTest() {
-//        System.out.println(apiService.activeCalendar("长安城", 7));
-        System.out.println(apiService.activeCalendar("长安城",0));
-//        System.out.println(apiService.examAnswer("古琴有几根弦", 10));
+        BaseResult<RoleAttributeData> roleAttributeDataBaseResult = apiService.roleAttribute("斗转星移", "雀舞山林", ticket);
+        System.out.println(roleAttributeDataBaseResult);
     }
 }

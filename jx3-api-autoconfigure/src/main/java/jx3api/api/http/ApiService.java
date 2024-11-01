@@ -89,9 +89,12 @@ public class ApiService {
      */
     private ApiProperties apiProperties;
 
-    public ApiService(ApiProperties apiProperties) {
+    private ObjectMapper objectMapper;
+
+    public ApiService(ApiProperties apiProperties, ObjectMapper objectMapper) {
         this.apiProperties = apiProperties;
         this.webClient = WebClient.builder().baseUrl(apiProperties.getApiUrl()).defaultHeader("token", apiProperties.getApiToken()).defaultHeader(HttpHeaders.USER_AGENT, "Nonebot2-jx3-bot").build();
+        this.objectMapper = objectMapper;
     }
 
     /**
@@ -1188,9 +1191,6 @@ public class ApiService {
         return mono.block();
     }
 
-
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-
     /**
      * 获取序列化后的返回值
      *
@@ -1198,7 +1198,7 @@ public class ApiService {
      * @param methodEnum    请求枚举
      * @return 序列化后的返回值，根据 MethodEnum.resultBeanClass 进行序列化
      */
-    public static <T> BaseResult<T> getResultRealData(RequestResult requestResult, MethodEnum methodEnum) {
+    public <T> BaseResult<T> getResultRealData(RequestResult requestResult, MethodEnum methodEnum) {
         if (requestResult == null) {
             logger.error("返回值不为空，请求名称=>{},请求地址=>{},返回值信息=>{}", methodEnum.getMethodName(), methodEnum.getMethodPath(), requestResult);
             BaseResult baseResult = new BaseResult();
@@ -1218,14 +1218,14 @@ public class ApiService {
         baseResult.setMsg(requestResult.getMsg());
         // 根据枚举优先判断pClass类型，区分主体对象是不是List
         if (List.class.isAssignableFrom(methodEnum.getpClass())) {
-            TypeFactory typeFactory = OBJECT_MAPPER.getTypeFactory();
+            TypeFactory typeFactory = objectMapper.getTypeFactory();
             CollectionType listType = typeFactory.constructCollectionType(List.class, methodEnum.getResultBeanClass());
             try {
                 List<T> result = null;
                 if (methodEnum.getJsonKey() == null) {
-                    result = OBJECT_MAPPER.readValue(OBJECT_MAPPER.writeValueAsString(requestResult.getData()), listType);
+                    result = objectMapper.readValue(objectMapper.writeValueAsString(requestResult.getData()), listType);
                 } else {
-                    result = OBJECT_MAPPER.readValue(((Map<String, String>) requestResult.getData()).get(methodEnum.getJsonKey()), listType);
+                    result = objectMapper.readValue(((Map<String, String>) requestResult.getData()).get(methodEnum.getJsonKey()), listType);
                 }
                 baseResult.setData(result);
             } catch (JsonProcessingException e) {
@@ -1235,9 +1235,9 @@ public class ApiService {
             }
         } else {
             if (methodEnum.getJsonKey() == null) {
-                baseResult.setData(OBJECT_MAPPER.convertValue(requestResult.getData(), methodEnum.getResultBeanClass()));
+                baseResult.setData(objectMapper.convertValue(requestResult.getData(), methodEnum.getResultBeanClass()));
             } else {
-                baseResult.setData(OBJECT_MAPPER.convertValue(((Map<String, String>) requestResult.getData()).get(methodEnum.getJsonKey()), methodEnum.getResultBeanClass()));
+                baseResult.setData(objectMapper.convertValue(((Map<String, String>) requestResult.getData()).get(methodEnum.getJsonKey()), methodEnum.getResultBeanClass()));
             }
         }
         return baseResult;

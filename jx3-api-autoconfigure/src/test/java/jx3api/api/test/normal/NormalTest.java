@@ -1,6 +1,7 @@
 package jx3api.api.test.normal;
 
 import jx3api.api.config.ApiProperties;
+import jx3api.api.config.JacksonConfig;
 import jx3api.api.http.ApiService;
 import jx3api.api.http.BaseResult;
 import jx3api.api.http.data.active.ActiveCelebritiesData;
@@ -89,7 +90,8 @@ public class NormalTest {
     @BeforeEach
     void initApiProperties() {
         ticket = getTicket();
-        apiService = new ApiService(getApiProperties());
+        JacksonConfig jacksonConfig = new JacksonConfig();
+        apiService = new ApiService(getApiProperties(), jacksonConfig.objectMapper());
     }
 
     private String getTicket() {
