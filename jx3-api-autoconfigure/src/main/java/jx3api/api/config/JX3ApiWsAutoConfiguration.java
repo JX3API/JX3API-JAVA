@@ -1,13 +1,12 @@
 package jx3api.api.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.Resource;
 import jx3api.api.ws.IWsDataPushService;
 import jx3api.api.ws.WebSocketClientInitializer;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +33,8 @@ public class JX3ApiWsAutoConfiguration {
     private WebSocketProperties webSocketProperties;
     @Resource
     private IWsDataPushService iWsDataPushService;
+    @Resource
+    private ObjectMapper objectMapper;
 
     @Bean
     public WebSocketClientInitializer webSocketClientInitializer() throws ClassNotFoundException,
@@ -50,7 +51,7 @@ public class JX3ApiWsAutoConfiguration {
         }
         webSocketProperties.getWsDataBeanBasePackage().add(DEFAULT_WS_DATA_PACKAGE);
         logger.info("欢迎使用JX3 API Java sdk websocket");
-        return new WebSocketClientInitializer(webSocketProperties, iWsDataPushService);
+        return new WebSocketClientInitializer(webSocketProperties, iWsDataPushService, objectMapper);
     }
 
 }

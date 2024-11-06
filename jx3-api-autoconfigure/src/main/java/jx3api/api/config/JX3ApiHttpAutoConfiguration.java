@@ -26,8 +26,6 @@ public class JX3ApiHttpAutoConfiguration {
     private ApiProperties apiProperties;
     @Resource
     private ObjectMapper objectMapper;
-
-
     @Bean
     public ApiService apiService() {
         if (StringUtils.isBlank(apiProperties.getApiUrl())) {

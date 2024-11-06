@@ -2,16 +2,12 @@ package org.jx3api.startertest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.Resource;
-import jx3api.api.http.ApiService;
-import jx3api.api.http.BaseResult;
-import jx3api.api.http.data.role.attribute.RoleAttributeData;
 import jx3api.api.ws.CustomWebSocketHandler;
 import jx3api.api.ws.IWsDataPushService;
 import jx3api.api.ws.WebSocketClientInitializer;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.web.socket.TextMessage;
@@ -22,15 +18,11 @@ import org.springframework.web.socket.WebSocketSession;
  */
 @SpringBootTest
 @TestPropertySource(locations = "classpath:test-local.properties")
-class StarterTestApplicationTests {
+class StarterTestApplicationTestsWs {
     @Autowired
     private WebSocketClientInitializer webSocketClientInitializer;
     @Resource
     private IWsDataPushService iWsDataPushService;
-    @Autowired
-    private ApiService apiService;
-    @Value("${jx3api.api.ticket}")
-    private String ticket;
     @Resource
     private ObjectMapper objectMapper;
     @Test
@@ -70,11 +62,5 @@ class StarterTestApplicationTests {
     private WebSocketSession createMockWebSocketSession() {
         // 创建模拟的 WebSocketSession
         return Mockito.mock(WebSocketSession.class);
-    }
-
-    @Test
-    void apiTest() {
-        BaseResult<RoleAttributeData> roleAttributeDataBaseResult = apiService.roleAttribute("斗转星移", "雀舞山林", ticket);
-        System.out.println(roleAttributeDataBaseResult);
     }
 }

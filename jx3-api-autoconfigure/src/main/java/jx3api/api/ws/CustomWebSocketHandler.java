@@ -1,5 +1,6 @@
 package jx3api.api.ws;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jx3api.api.util.TimeUtils;
 import jx3api.api.ws.action.WsActionHandler;
 import org.slf4j.Logger;
@@ -30,9 +31,11 @@ public class CustomWebSocketHandler extends TextWebSocketHandler {
     private WebSocketSession webSocketSession;
     private ScheduledExecutorService executorService;
 
-    public CustomWebSocketHandler(WebSocketClientInitializer webSocketClientInitializer, IWsDataPushService iWsDataPushService) {
+    public CustomWebSocketHandler(WebSocketClientInitializer webSocketClientInitializer,
+                                  IWsDataPushService iWsDataPushService,
+                                  ObjectMapper objectMapper) {
         this.webSocketClientInitializer = webSocketClientInitializer;
-        wsActionHandler = new WsActionHandler(iWsDataPushService);
+        wsActionHandler = new WsActionHandler(iWsDataPushService,objectMapper);
     }
 
 

@@ -21,9 +21,10 @@ public class WsActionHandler {
      * 需要接入方实现的数据推送接口
      */
     private IWsDataPushService wsDataPushService;
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper;
 
-    public WsActionHandler(IWsDataPushService wsDataPushService) {
+    public WsActionHandler(IWsDataPushService wsDataPushService, ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
         this.wsDataPushService = wsDataPushService;
     }
 

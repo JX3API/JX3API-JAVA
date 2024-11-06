@@ -1,6 +1,7 @@
 package org.jx3api.startertest;
 
 import jx3api.api.config.EnableJX3Api;
+import jx3api.api.config.EnableJX3ApiWS;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;

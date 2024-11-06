@@ -1,5 +1,6 @@
 package jx3api.api.ws;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jx3api.api.config.WebSocketProperties;
 import jx3api.api.ws.action.WsActionDataManager;
 import org.slf4j.Logger;
@@ -26,10 +27,14 @@ public class WebSocketClientInitializer {
     private CustomWebSocketHandler webSocketHandler;
     private WebSocketConnectionManager webSocketConnectionManager;
     private IWsDataPushService iWsDataPushService;
+    private ObjectMapper objectMapper;
 
-    public WebSocketClientInitializer(WebSocketProperties webSocketProperties, IWsDataPushService iWsDataPushService) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public WebSocketClientInitializer(WebSocketProperties webSocketProperties,
+                                      IWsDataPushService iWsDataPushService,
+                                      ObjectMapper objectMapper) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         this.webSocketProperties = webSocketProperties;
         this.iWsDataPushService = iWsDataPushService;
+        this.objectMapper = objectMapper;
         connect();
         // 初始化ws推送事件中，序列化相关信息
         initWsActionData(webSocketProperties);
@@ -67,7 +72,7 @@ public class WebSocketClientInitializer {
 
     private void checkWsHandler() {
         if (this.webSocketHandler == null) {
-            this.webSocketHandler = new CustomWebSocketHandler(this, iWsDataPushService);
+            this.webSocketHandler = new CustomWebSocketHandler(this, iWsDataPushService,objectMapper);
         }
     }
 
