@@ -61,4 +61,5 @@ mvn clean install -DskipTests
   - bugfix 增加objectmapper配置类，修复引字段缺失导致的整体序列化失败的问题，后果遇到字段缺失，可以提issues来添加
 - V1.2.3
   - bugfix 修复了 因为内置objectmapper，并且外部也有objectmapper时，导致的问题。现在sdk通过spring获取托管的objectmapper。
-  - 所以现在需要什么样的序列化方式，都有使用方决定了。测试请参考test模块下的测试类，和autoconfigure下的测试类
+  - 所以现在需要什么样的序列化方式，都由使用方决定了。测试请参考test模块下的测试类，和autoconfigure下的测试类
+  - 所以一定要自行选择序列化的objectmapper。当然也可以使用`JacksonConfig.java`提供的示例代码，但是一定要托管给spring才生效
