@@ -5,7 +5,7 @@ The Java SDK to the JX3API.
 使用说明
 
 0、喜报，终于搞明白怎么推送到中央仓库，现在可以选择直接引用中央仓库配置来引用了
-
+注：最新版本请通过maven中央仓库查询，或参考更新记录中的版本号，推荐使用最新版本
 ```
         <dependency>
             <groupId>io.github.jx3api</groupId>
@@ -52,14 +52,14 @@ mvn clean install -DskipTests
 
 **更新记录**
 
-- V1.2
+- 版本：V1.2
     - 增加`挂件效果`、qq秀相关接口
     - 删除 `资历榜单, /data/school/rank/statistical`接口
-- V1.2.1
+- 版本：V1.2.1
   - bugfix 修复了错误使用内部类，导致类无法外部使用的问题。
-- V1.2.2
+- 版本：V1.2.2
   - bugfix 增加objectmapper配置类，修复引字段缺失导致的整体序列化失败的问题，后果遇到字段缺失，可以提issues来添加
-- V1.2.3
+- 版本：V1.2.3
   - bugfix 修复了 因为内置objectmapper，并且外部也有objectmapper时，导致的问题。现在sdk通过spring获取托管的objectmapper。
   - 所以现在需要什么样的序列化方式，都由使用方决定了。测试请参考test模块下的测试类，和autoconfigure下的测试类
   - 所以一定要自行选择序列化的objectmapper。当然也可以使用`jx3api.api.test.normal.JacksonConfig`提供的示例代码，但是一定要托管给spring才生效
