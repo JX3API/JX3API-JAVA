@@ -32,7 +32,7 @@ public class JX3ApiHttpAutoConfiguration {
             throw new NullPointerException("jx3api url 不允许为空，请检查配置信息");
         }
         if (StringUtils.isBlank(apiProperties.getApiToken())) {
-            logger.error("未获取到ApiToken，付费接口将无法使用");
+            logger.error("未获取到ApiToken，非免费接口将无法使用");
         }
         logger.info("欢迎使用JX3 API Java sdk http API");
         return new ApiService(apiProperties, objectMapper);
