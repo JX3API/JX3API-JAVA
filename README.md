@@ -62,4 +62,4 @@ mvn clean install -DskipTests
 - V1.2.3
   - bugfix 修复了 因为内置objectmapper，并且外部也有objectmapper时，导致的问题。现在sdk通过spring获取托管的objectmapper。
   - 所以现在需要什么样的序列化方式，都由使用方决定了。测试请参考test模块下的测试类，和autoconfigure下的测试类
-  - 所以一定要自行选择序列化的objectmapper。当然也可以使用`JacksonConfig.java`提供的示例代码，但是一定要托管给spring才生效
+  - 所以一定要自行选择序列化的objectmapper。当然也可以使用`jx3api.api.test.normal.JacksonConfig`提供的示例代码，但是一定要托管给spring才生效
