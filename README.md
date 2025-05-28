@@ -4,8 +4,12 @@ The Java SDK to the JX3API.
 
 使用说明
 
-0、喜报，终于搞明白怎么推送到中央仓库，现在可以选择直接引用中央仓库配置来引用了
 注：最新版本请通过maven中央仓库查询，或参考更新记录中的版本号，推荐使用最新版本
+
+如果有需要修改的地方或者存在什么问题和建议，方便的话，欢迎可以提出来！
+
+0、喜报，终于搞明白怎么推送到中央仓库，现在可以选择直接引用中央仓库配置来引用了
+
 ```
         <dependency>
             <groupId>io.github.jx3api</groupId>
@@ -13,6 +17,7 @@ The Java SDK to the JX3API.
             <version>1.1</version>
         </dependency>         
 ```
+
 
 1、也可以本地安装一下，再引入
 
